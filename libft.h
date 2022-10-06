@@ -6,24 +6,31 @@
 /*   By: mcochin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:20:55 by mcochin           #+#    #+#             */
-/*   Updated: 2022/08/31 15:26:17 by mcochin          ###   ########.fr       */
+/*   Updated: 2022/10/06 15:05:05 by mcochin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
+
 # include <unistd.h>
 # include <stddef.h>
 # include <string.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }t_list;
+
+/*	MANDATORY	*/
 
 int		ft_atoi(const char *nptr);
 char	*ft_strchr(const char *s, int c);
@@ -61,7 +68,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 
-// FT_PRINTF //
+/*	FT_PRINTF	*/
 
 int		ft_printf(const char *str, ...);
 int		ft_putnbr(int n);
@@ -71,7 +78,15 @@ int		ft_putunsnbr(unsigned int n);
 int		ft_puthexnbr(unsigned int nb, int base);
 int		ft_putadr(unsigned long int adr);
 
-// BONUS //
+/*	GET_NEXT_LINE	*/
+
+char	*get_next_line(int fd);
+char	*readnsave(char *save, int fd);
+int		is_end_of_line(char *str);
+char	*join_free(char *s1, char *s2);
+char	*fill_str(char *save);
+
+/*	BONUS	*/
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);;

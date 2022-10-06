@@ -62,25 +62,28 @@ SRCSPRINTF = ft_printf/ft_printf.c \
 	ft_printf/ft_putnbr.c \
 	ft_printf/ft_putstr.c \
 	ft_printf/ft_putunsnbr.c
+SRCSGNL = get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c
+
 OBJS= $(SRCS:.c=.o)
 OBJSB = $(SRCSB:.c=.o)
 OBJSPRINTF = $(SRCSPRINTF:.c=.o)
+OBJSGNL = $(SRCSGNL:.c=.o)
+
 CC = gcc
 CFLAGS = -Werror -Wextra -Wall
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJSPRINTF)
-	ar rcs $(NAME) $(OBJS) $(OBJSPRINTF)
+$(NAME): $(OBJS) $(OBJSPRINTF) $(OBJSGNL)
+	ar rcs $(NAME) $(OBJS) $(OBJSPRINTF) $(OBJSGNL)
 
 bonus : $(OBJSB)
 	ar rcs $(NAME) $(OBJSB)
 
 clean:
-	$(RM) $(OBJS) libft.so
-	$(RM) $(OBJSB) 
-	$(RM) $(OBJSPRINTF)
+	$(RM) $(OBJS) $(OBJSB) $(OBJSPRINTF) $(OBJSGNL) 
 
 fclean: clean
 	$(RM) $(NAME)
